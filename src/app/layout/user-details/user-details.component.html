@@ -1,0 +1,44 @@
+<mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+    <ng-container matColumnDef="firstname">
+      <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.firstname}} </mat-cell>
+    </ng-container>
+
+     <ng-container matColumnDef="lastname">
+        <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.lastname}} </mat-cell>
+      </ng-container>
+  
+    <ng-container matColumnDef="mobileNumber">
+      <mat-header-cell *matHeaderCellDef> Mobile No </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.mobileNumber}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dob">
+        <mat-header-cell *matHeaderCellDef> DOB </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.dob | date: 'dd/MM/yyyy'}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="qualification">
+        <mat-header-cell *matHeaderCellDef> Qualification </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.qualification}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+        <mat-cell *matCellDef="let element">  <a (click)="onUpdate(element)">Edit</a> </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+        <mat-cell *matCellDef="let element">  <a (click)="onDelete(element)">Delete</a>  </mat-cell>
+      </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

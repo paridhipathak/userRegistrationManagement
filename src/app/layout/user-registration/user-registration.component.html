@@ -1,0 +1,43 @@
+<form [formGroup]="registrationForm" #formDirective="ngForm" (ngSubmit)="onSubmit(formDirective)">
+    <mat-form-field class="full-width-input">
+        <input matInput placeholder="First Name" formControlName="firstname" required>
+        <mat-error>
+            Please provide a valid firstname.
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width-input">
+        <input matInput placeholder="Last Name" formControlName="lastname" required>
+        <mat-error>
+            Please provide a valid lastname.
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width-input">
+        <input matInput type="number" placeholder="Mobile number" formControlName="mobileNumber" required>
+        <mat-error>
+            Please provide a valid mobile number
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width-input">
+        <input matInput placeholder="Email" formControlName="email" required>
+        <mat-error>
+            Please provide a valid email address
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width-input">
+        <mat-label>DOB</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dob" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error>
+            Please provide a valid birthdate
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width-input">
+        <input matInput placeholder="Qualification" formControlName="qualification" required>
+        <mat-error>
+            Please provide a valid qualification
+        </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary">Submit</button>
+</form>
