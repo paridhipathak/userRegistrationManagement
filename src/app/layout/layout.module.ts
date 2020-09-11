@@ -13,6 +13,8 @@ import {
   MatNativeDateModule
 } from "@angular/material";
 
+import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { LayoutRoutingModule } from "./layout-routing.module";
 import { LayoutComponent } from "./layout.component";
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
@@ -31,8 +33,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     MatTableModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDatepickerModule,
-    MatNativeDateModule
+    NgbDatepickerModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ]
 })

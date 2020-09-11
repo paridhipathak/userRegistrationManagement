@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Output, EventEmitter } from '@angular/core';
@@ -16,7 +17,8 @@ export class RegistrationFormComponent implements OnInit {
   userRegisterForm: FormGroup;
   passwordMatchError: boolean;
   user: User = new User();
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  submitted = false;
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.userRegisterForm = this.fb.group({
       username: ['', Validators.required],
       email: ['', Validators.email],
@@ -28,13 +30,18 @@ export class RegistrationFormComponent implements OnInit {
   ngOnInit() {
   }
 
+  get f() {
+    return this.userRegisterForm.controls;
+  }
+
   onRegister() {
+    this.submitted = true;
     this.passwordMatchError = this.userRegisterForm.get('password').value === this.userRegisterForm.get('cPassword').value ? false : true;
     if(this.userRegisterForm.valid && !this.passwordMatchError) {
       this.user = this.userRegisterForm.value;
       delete this.user['cPassword'];
       this.authService.registerUser(this.user);
-      this.registerEvent.emit(true);
+      this.router.navigate(['/']);
     }
   }
 

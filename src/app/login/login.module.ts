@@ -1,6 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA  } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { RouterModule } from '@angular/router';
 import {
   MatIconModule,
   MatButtonModule,
@@ -18,6 +19,7 @@ import { RegistrationFormComponent } from "./registration-form/registration-form
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     LoginRoutingModule,

@@ -1,18 +1,14 @@
-<mat-card>
-    <h2>User Registration Management</h2>
-    <h5 *ngIf="registerMessage">{{registerMessage}}</h5>
-    <mat-card-content>
-        <mat-tab-group mat-align-tabs="center" [(selectedIndex)]="selectedTab">
-            <mat-tab label="Login">
-                <ng-template matTabContent>
-                    <app-login-form></app-login-form>
-                </ng-template>
-            </mat-tab>
-            <mat-tab label="Register">
-                <ng-template matTabContent>
-                <app-registration-form (registerEvent)="changeSelectedTab()"></app-registration-form>
-                </ng-template>
-            </mat-tab>
-        </mat-tab-group>
-    </mat-card-content>
-</mat-card>
+<div class="card col-sm-4">
+    <h3 class="p-2">User Registration Management</h3>
+    <div class="card-body">
+        <ul class="nav justify-content-center p-2" [routerLinkActiveOptions]="{exact: true}">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/login']" routerLinkActive="active">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/register']" routerLinkActive="active">Register</a>
+            </li>
+        </ul>
+        <router-outlet></router-outlet>
+    </div>
+</div>

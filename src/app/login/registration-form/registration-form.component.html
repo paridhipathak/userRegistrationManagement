@@ -1,34 +1,44 @@
-<mat-card>
-    <mat-card-content>
-      <form [formGroup]="userRegisterForm">
-        <mat-form-field class="full-width-input">
-          <input matInput placeholder="User Name" formControlName="username" required>
-          <mat-error>
-            Please provide a valid email address
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="full-width-input">
-            <input matInput placeholder="Email" formControlName="email" required>
-            <mat-error>
-              Please provide a valid email address
-            </mat-error>
-          </mat-form-field>
-        <mat-form-field class="full-width-input">
-          <input matInput type="password" placeholder="Password" autocomplete="off" formControlName="password" required>
-          <mat-error>
-            Please provide a valid password
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field class="full-width-input">
-            <input matInput type="password" placeholder="Confirm Password" autocomplete="off" formControlName="cPassword" required>
-            <mat-error>
-              Please provide a valid password
-            </mat-error>
-          </mat-form-field>
-          <mat-error *ngIf="passwordMatchError">
-            Confirm Password does not match with the Password field.
-          </mat-error>
-        <button mat-raised-button color="primary" (click)="onRegister()">Register</button>
-      </form>
-    </mat-card-content>
-  </mat-card>
+<div>
+  <form [formGroup]="userRegisterForm" (ngSubmit)="onRegister()">
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <input type="text" class="form-control" placeholder="User Name" formControlName="username" required>
+        <div class="text-danger mt-2" *ngIf="(f.username.touched || submitted) && f.username.errors?.required">
+          Please provide a valid username
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <input type="email" class="form-control" placeholder="Email" formControlName="email" required>
+        <div class="text-danger mt-2" *ngIf="(f.email.touched || submitted) && (f.email.errors?.required || f.email.errors?.email)">
+          Please provide a valid email address
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <input type="password" class="form-control" autocomplete="off" placeholder="Password" formControlName="password"
+          required>
+        <div class="text-danger mt-2" *ngIf="(f.password.touched || submitted) && f.password.errors?.required">
+          Please provide a valid password
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <input type="password" class="form-control" autocomplete="off" placeholder="Confirm Password"
+          formControlName="cPassword" required>
+        <div class="text-danger mt-2" *ngIf="(f.cPassword.touched || submitted) && f.cPassword.errors?.required">
+          Please provide a valid confirm password value.
+        </div>
+        <div class="text-danger mt-2" *ngIf="passwordMatchError">
+          Confirm Password does not match with the Password field.
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary">Register</button>
+  </form>
+</div>

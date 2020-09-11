@@ -15,6 +15,8 @@ export class LoginFormComponent implements OnInit {
   loginForm: FormGroup;
   loginInvalid: boolean;
   user: User;
+  submitted = false;
+  
   constructor(private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
@@ -32,7 +34,12 @@ export class LoginFormComponent implements OnInit {
     this.user = this.authService.getUser();
   }
 
+  get f() {
+    return this.loginForm.controls;
+  }
+
   onLogin() {
+    this.submitted = true;
     this.checkUserExist();
     if(this.loginForm.valid && this.user) {
       let name= this.loginForm.get('username').value;
@@ -40,7 +47,7 @@ export class LoginFormComponent implements OnInit {
 
       if(name === this.user.username && password === this.user.password) {
         this.authService.setSession();
-        this.router.navigate([''])
+        this.router.navigate(['/dashboard'])
        } else this.loginInvalid = true;
 
     } else {
